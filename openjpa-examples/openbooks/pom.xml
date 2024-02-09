@@ -125,64 +125,64 @@
                     <plugin>
                         <groupId>org.apache.maven.plugins</groupId>
                         <artifactId>maven-antrun-plugin</artifactId>
-                        <executions>
-                            <execution>
-                                <id>genmodel</id>
-                                <phase>process-resources</phase>
-                                <configuration>
-                                    <target>
-                                        <echo>Running OpenBooks genmodel</echo>
-                                        <property name="openjpa.version" value="${project.version}" />
-                                        <property name="maven.repos" value="${settings.localRepository}" />
-                                        <ant antfile="${basedir}/build.xml">
-                                            <target name="generate-canonical-model" />
-                                        </ant>
-                                    </target>
-                                </configuration>
-                                <goals>
-                                    <goal>run</goal>
-                                </goals>
-                            </execution>
-                            <execution>
-                                <id>enhance</id>
-                                <phase>process-classes</phase>
-                                <configuration>
-                                    <target>
-                                        <echo>Running OpenBooks Enhance</echo>
-                                        <property name="openjpa.version" value="${project.version}" />
-                                        <property name="maven.repos" value="${settings.localRepository}" />
-                                        <ant antfile="${basedir}/build.xml">
-                                            <target name="enhance" />
-                                        </ant>
-                                    </target>
-                                </configuration>
-                                <goals>
-                                    <goal>run</goal>
-                                </goals>
-                            </execution>
-                            <execution>
-                                <id>generate-source</id>
-                                <phase>prepare-package</phase>
-                                <configuration>
-                                    <target>
-                                        <echo>Running OpenBooks Generate Source</echo>
-                                        <property name="openjpa.version" value="${project.version}" />
-                                        <property name="maven.repos" value="${settings.localRepository}" />
-                                        <ant antfile="${basedir}/build.xml">
-                                            <target name="generate-source" />
-                                        </ant>
-                                        <copy todir="${basedir}/target">
-                                            <fileset dir="${basedir}" includes="index.html" />
-                                            <fileset dir="${basedir}" includes="*.txt" />
-                                            <fileset dir="${basedir}" includes="run.*" />
-                                        </copy>
-                                    </target>
-                                </configuration>
-                                <goals>
-                                    <goal>run</goal>
-                                </goals>
-                            </execution>
-                        </executions>
+<!--                        <executions>-->
+<!--                            <execution>-->
+<!--                                <id>genmodel</id>-->
+<!--                                <phase>process-resources</phase>-->
+<!--                                <configuration>-->
+<!--                                    <target>-->
+<!--                                        <echo>Running OpenBooks genmodel</echo>-->
+<!--                                        <property name="openjpa.version" value="${project.version}" />-->
+<!--                                        <property name="maven.repos" value="${settings.localRepository}" />-->
+<!--                                        <ant antfile="${basedir}/build.xml">-->
+<!--                                            <target name="generate-canonical-model" />-->
+<!--                                        </ant>-->
+<!--                                    </target>-->
+<!--                                </configuration>-->
+<!--                                <goals>-->
+<!--                                    <goal>run</goal>-->
+<!--                                </goals>-->
+<!--                            </execution>-->
+<!--                            <execution>-->
+<!--                                <id>enhance</id>-->
+<!--                                <phase>process-classes</phase>-->
+<!--                                <configuration>-->
+<!--                                    <target>-->
+<!--                                        <echo>Running OpenBooks Enhance</echo>-->
+<!--                                        <property name="openjpa.version" value="${project.version}" />-->
+<!--                                        <property name="maven.repos" value="${settings.localRepository}" />-->
+<!--                                        <ant antfile="${basedir}/build.xml">-->
+<!--                                            <target name="enhance" />-->
+<!--                                        </ant>-->
+<!--                                    </target>-->
+<!--                                </configuration>-->
+<!--                                <goals>-->
+<!--                                    <goal>run</goal>-->
+<!--                                </goals>-->
+<!--                            </execution>-->
+<!--                            <execution>-->
+<!--                                <id>generate-source</id>-->
+<!--                                <phase>prepare-package</phase>-->
+<!--                                <configuration>-->
+<!--                                    <target>-->
+<!--                                        <echo>Running OpenBooks Generate Source</echo>-->
+<!--                                        <property name="openjpa.version" value="${project.version}" />-->
+<!--                                        <property name="maven.repos" value="${settings.localRepository}" />-->
+<!--                                        <ant antfile="${basedir}/build.xml">-->
+<!--                                            <target name="generate-source" />-->
+<!--                                        </ant>-->
+<!--                                        <copy todir="${basedir}/target">-->
+<!--                                            <fileset dir="${basedir}" includes="index.html" />-->
+<!--                                            <fileset dir="${basedir}" includes="*.txt" />-->
+<!--                                            <fileset dir="${basedir}" includes="run.*" />-->
+<!--                                        </copy>-->
+<!--                                    </target>-->
+<!--                                </configuration>-->
+<!--                                <goals>-->
+<!--                                    <goal>run</goal>-->
+<!--                                </goals>-->
+<!--                            </execution>-->
+<!--                        </executions>-->
                     </plugin>
                     <plugin>
                         <groupId>org.apache.maven.plugins</groupId>

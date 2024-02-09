@@ -80,25 +80,25 @@
                 <groupId>org.apache.openjpa</groupId>
                 <artifactId>openjpa-maven-plugin</artifactId>
                 <version>@pom.version@</version>
-                <executions>
-                    <execution>
-                        <id>mappingtool</id>
-                        <phase>process-classes</phase>
-                        <goals>
-                            <goal>enhance</goal>
-                            <goal>sql</goal>
-                            <goal>schema</goal>
-                        </goals>
-                        <configuration>
-                            <toolProperties>
-                                <property>
-                                    <name>someSetting</name>
-                                    <value>someValue</value>
-                                </property>
-                            </toolProperties>
-                        </configuration>
-                    </execution>
-                </executions>
+<!--                <executions>-->
+<!--                    <execution>-->
+<!--                        <id>mappingtool</id>-->
+<!--                        <phase>process-classes</phase>-->
+<!--                        <goals>-->
+<!--                            <goal>enhance</goal>-->
+<!--                            <goal>sql</goal>-->
+<!--                            <goal>schema</goal>-->
+<!--                        </goals>-->
+<!--                        <configuration>-->
+<!--                            <toolProperties>-->
+<!--                                <property>-->
+<!--                                    <name>someSetting</name>-->
+<!--                                    <value>someValue</value>-->
+<!--                                </property>-->
+<!--                            </toolProperties>-->
+<!--                        </configuration>-->
+<!--                    </execution>-->
+<!--                </executions>-->
             </plugin>
             <plugin>
                 <artifactId>maven-compiler-plugin</artifactId>

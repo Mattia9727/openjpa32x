@@ -138,33 +138,33 @@
             -->
 
             <!-- new way of using openjpa-maven-plugin to enhance classes -->
-            <plugin>
-                <groupId>org.apache.openjpa</groupId>
-                <artifactId>openjpa-maven-plugin</artifactId>
-                <configuration>
-                    <includes>org/apache/openjpa/integration/daytrader/*Bean.class</includes>
-                    <excludes>org/apache/openjpa/persistence/**/*.class</excludes>
-                    <addDefaultConstructor>true</addDefaultConstructor>
-                    <enforcePropertyRestrictions>true</enforcePropertyRestrictions>
-                </configuration>
-                <executions>
-                    <execution>
-                        <id>enhancer</id>
-                        <phase>process-test-classes</phase>
-                        <goals>
-                            <goal>test-enhance</goal>
-                        </goals>
-                    </execution>
-                </executions>
-                <dependencies>
-                    <!-- use o-p-j instead of openjpa to avoid cyclical dependency in maven graph -->
-                    <dependency>
-                        <groupId>org.apache.openjpa</groupId>
-                        <artifactId>openjpa-persistence-jdbc</artifactId>
-                        <version>${project.version}</version>
-                    </dependency>
-                </dependencies>
-            </plugin>
+<!--            <plugin>-->
+<!--                <groupId>org.apache.openjpa</groupId>-->
+<!--                <artifactId>openjpa-maven-plugin</artifactId>-->
+<!--                <configuration>-->
+<!--                    <includes>org/apache/openjpa/integration/daytrader/*Bean.class</includes>-->
+<!--                    <excludes>org/apache/openjpa/persistence/**/*.class</excludes>-->
+<!--                    <addDefaultConstructor>true</addDefaultConstructor>-->
+<!--                    <enforcePropertyRestrictions>true</enforcePropertyRestrictions>-->
+<!--                </configuration>-->
+<!--                <executions>-->
+<!--                    <execution>-->
+<!--                        <id>enhancer</id>-->
+<!--                        <phase>process-test-classes</phase>-->
+<!--                        <goals>-->
+<!--                            <goal>test-enhance</goal>-->
+<!--                        </goals>-->
+<!--                    </execution>-->
+<!--                </executions>-->
+<!--                <dependencies>-->
+<!--                    &lt;!&ndash; use o-p-j instead of openjpa to avoid cyclical dependency in maven graph &ndash;&gt;-->
+<!--                    <dependency>-->
+<!--                        <groupId>org.apache.openjpa</groupId>-->
+<!--                        <artifactId>openjpa-persistence-jdbc</artifactId>-->
+<!--                        <version>${project.version}</version>-->
+<!--                    </dependency>-->
+<!--                </dependencies>-->
+<!--            </plugin>-->
 
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>

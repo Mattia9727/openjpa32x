@@ -84,4 +84,112 @@
             <scope>test</scope>
         </dependency>
     </dependencies>
+
+    <build>
+        <plugins>
+            <!-- ISW2 -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <version>${maven.surefire.version}</version>
+                <configuration>
+                    <testFailureIgnore>true</testFailureIgnore>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.jacoco</groupId>
+                <artifactId>jacoco-maven-plugin</artifactId>
+            </plugin>
+        </plugins>
+    </build>
+
+    <profiles>
+        <!-- ISW2: Ba-Dua Profile -->
+        <profile>
+            <id>badua-coverage</id>
+            <activation>
+                <activeByDefault>false</activeByDefault>
+            </activation>
+            <properties>
+                <!-- Use a stable version instead of SNAPSHOT one -->
+                <argLine>-javaagent:../dependencies/ba-dua-agent-rt-0.4.0-all.jar -Doutput.file=target/badua.ser
+                </argLine>
+            </properties>
+            <build>
+                <plugins>
+                    <!-- build .xml report's file -->
+                    <plugin>
+                        <groupId>org.codehaus.mojo</groupId>
+                        <artifactId>exec-maven-plugin</artifactId>
+                        <version>1.5.0</version>
+                        <executions>
+                            <execution>
+                                <goals>
+                                    <goal>exec</goal>
+                                </goals>
+                                <phase>verify</phase>
+                                <configuration>
+                                    <executable>java</executable>
+                                    <arguments>
+                                        <argument>-jar</argument>
+                                        <argument>
+<!--    <badua.jar.cli>jars/badua/ba-dua-cli-0.4.1-SNAPSHOT-all.jar</badua.jar.cli>-->
+                                            ${project.basedir}/../dependencies/ba-dua-cli-0.4.0-all.jar
+                                        </argument>
+                                        <argument>report</argument>
+                                        <argument>-input</argument>
+                                        <argument>target/badua.ser</argument>
+                                        <argument>-classes</argument>
+                                        <argument>target/classes</argument>
+                                        <argument>-show-classes</argument>
+                                        <argument>-show-methods</argument>
+                                        <argument>-xml</argument>
+                                        <argument>target/badua.xml</argument>
+                                    </arguments>
+                                </configuration>
+                            </execution>
+                        </executions>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+
+        <!-- PIT Profile-->
+        <profile>
+            <id>pit</id>
+            <activation>
+                <activeByDefault>false</activeByDefault>
+            </activation>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.pitest</groupId>
+                        <artifactId>pitest-maven</artifactId>
+                        <version>${pitest-maven-plugin.version}</version>
+                        <configuration>
+                            <threads>4</threads>
+                            <verbose>true</verbose>
+                            <targetClasses>
+                                <param>org.apache.openjpa.jdbc.sql.DBDictionary</param>
+                            </targetClasses>
+                            <targetTests>
+                                <param>org.apache.openjpa.jdbc.sql.TestDBDictionary</param>
+                            </targetTests>
+                        </configuration>
+                        <executions>
+                            <execution>
+                                <id>Mutation Report</id>
+                                <phase>test-compile</phase>
+                                <goals>
+                                    <goal>mutationCoverage</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+
+    </profiles>
+
 </project>

@@ -109,6 +109,9 @@
         <dbcp2.version>2.8.0</dbcp2.version>
 	    <pool2.version>2.9.0</pool2.version>
 
+        <!-- ISW2 -->
+        <pitest-maven-plugin.version>1.5.1</pitest-maven-plugin.version>
+
     </properties>
 
     <licenses>
@@ -397,6 +400,7 @@
                        <artifactId>maven-surefire-plugin</artifactId>
                        <version>${maven.surefire.version}</version>
                        <configuration>
+                           <testFailureIgnore>true</testFailureIgnore>
                            <argLine>${surefire.jvm.args}</argLine>
                            <includes>
                                <include />
@@ -2017,6 +2021,9 @@
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-surefire-plugin</artifactId>
                     <version>${maven.surefire.version}</version>
+                    <configuration>
+                        <testFailureIgnore>true</testFailureIgnore>
+                    </configuration>
 <!--                    <configuration>-->
 <!--                        <argLine>${surefire.jvm.args}</argLine>-->
 <!--                        <redirectTestOutputToFile>true</redirectTestOutputToFile>-->

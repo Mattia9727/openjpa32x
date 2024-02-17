@@ -189,7 +189,7 @@
             <properties>
                 <!-- Use a stable version instead of SNAPSHOT one -->
                 <ba-dua.version>0.6.0</ba-dua.version>
-                <argLine>-javaagent:../dependencies/ba-dua-agent-rt-0.6.0-all.jar -Doutput.file=target/badua.ser
+                <argLine>-javaagent:../dependencies/ba-dua-agent-rt-0.4.0-all.jar -Doutput.file=target/badua.ser
                 </argLine>
             </properties>
             <build>
@@ -210,7 +210,7 @@
                                     <arguments>
                                         <argument>-jar</argument>
                                         <argument>
-                                            ${project.basedir}/../dependencies/ba-dua-cli-0.6.0-all.jar
+                                            ${project.basedir}/../dependencies/ba-dua-cli-0.4.0-all.jar
                                         </argument>
                                         <argument>report</argument>
                                         <argument>-input</argument>
@@ -223,6 +223,41 @@
                                         <argument>target/badua.xml</argument>
                                     </arguments>
                                 </configuration>
+                            </execution>
+                        </executions>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+        <!-- PIT Profile-->
+        <profile>
+            <id>pit</id>
+            <activation>
+                <activeByDefault>false</activeByDefault>
+            </activation>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.pitest</groupId>
+                        <artifactId>pitest-maven</artifactId>
+                        <version>${pitest-maven-plugin.version}</version>
+                        <configuration>
+                            <threads>4</threads>
+                            <verbose>true</verbose>
+                            <targetClasses>
+                                <param>org.apache.openjpa.util.CacheMap</param>
+                            </targetClasses>
+                            <targetTests>
+                                <param>org.apache.openjpa.util.TestPut</param>
+                            </targetTests>
+                        </configuration>
+                        <executions>
+                            <execution>
+                                <id>Mutation Report</id>
+                                <phase>test-compile</phase>
+                                <goals>
+                                    <goal>mutationCoverage</goal>
+                                </goals>
                             </execution>
                         </executions>
                     </plugin>

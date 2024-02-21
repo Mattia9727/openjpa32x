@@ -72,7 +72,10 @@ public class TestDBDictionary {
                 {"some_string\""},
                 {"\"some_string"},
                 //Iterazione Ba-Dua
-                {"\"\""},
+                {"\"a\""},
+                {"\"a"},
+                {"a\""},
+                {"a"},
         };
         return Arrays.asList(params);
     }

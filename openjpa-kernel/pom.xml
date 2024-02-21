@@ -248,7 +248,7 @@
                                 <param>org.apache.openjpa.util.CacheMap</param>
                             </targetClasses>
                             <targetTests>
-                                <param>org.apache.openjpa.util.TestPut</param>
+                                <param>org.apache.openjpa.util.TestCacheMap</param>
                             </targetTests>
                         </configuration>
                         <executions>

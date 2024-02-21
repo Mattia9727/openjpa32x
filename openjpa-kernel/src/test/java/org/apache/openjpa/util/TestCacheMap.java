@@ -1,6 +1,5 @@
 package org.apache.openjpa.util;
 
-import org.apache.openjpa.lib.log.Log;
 import org.junit.*;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
@@ -9,10 +8,9 @@ import java.util.Arrays;
 import java.util.Collection;
 import java.util.concurrent.*;
 import java.util.concurrent.atomic.AtomicBoolean;
-import java.util.concurrent.atomic.AtomicReference;
 
 @RunWith(value = Parameterized.class)
-public class TestPut {
+public class TestCacheMap {
     private CacheMap cacheMap;
     private Object key;
     private Object value;
@@ -63,7 +61,7 @@ public class TestPut {
         }
     }
 
-    public TestPut(ParamType keyType, ParamType valueType, boolean inPinnedMap, boolean inSoftMap, int maxCacheMap) {
+    public TestCacheMap(ParamType keyType, ParamType valueType, boolean inPinnedMap, boolean inSoftMap, int maxCacheMap) {
 
         configure(keyType, valueType, inPinnedMap, inSoftMap, maxCacheMap);
     }
@@ -87,20 +85,12 @@ public class TestPut {
                 {ParamType.EXIST, ParamType.VALID, false, false, 1000},
                 //Seconda iterazione JaCoCo: esistenza chiave in pinnedMap e/o softMap
                 {ParamType.EXIST, ParamType.VALID, false, true, 1000},
-                {ParamType.NULL, ParamType.NULL, true, false, 1000},
                 {ParamType.EXIST, ParamType.VALID, true, false, 1000},
                 {ParamType.EXIST, ParamType.VALID, true, true, 1000},
+                {ParamType.NULL, ParamType.NULL, true, false, 1000},
                 {ParamType.VALID, ParamType.VALID, false, true, 1000},
                 //Terza iterazione JaCoCo: aggiunta maxCacheMap per test con max=0
                 {ParamType.VALID, ParamType.VALID, false, false, 0},
-                //Iterazione Ba-Dua per get
-                {ParamType.NULL, ParamType.NULL, false, false, 0},
-                {ParamType.NULL, ParamType.NULL, false, true, 0},
-                {ParamType.NULL, ParamType.NULL, true, false, 0},
-                {ParamType.NULL, ParamType.NULL, true, true, 0},
-
-
-
         });
     }
 
@@ -116,7 +106,6 @@ public class TestPut {
     @Test
     public void put() throws InterruptedException {
         int nObjectsInCacheMapBeforePut = this.cacheMap.size();                         //Prima iterazione PIT
-//        boolean releasedLockInThread = false;
 
         Object ret = this.cacheMap.put(this.key, this.value);
         Object getRet =  this.cacheMap.get(this.key);
@@ -157,29 +146,6 @@ public class TestPut {
             }
         }
     }
-//    @Test
-//    public void putThreaded() throws InterruptedException {
-//        int nObjectsInCacheMapBefore = this.cacheMap.size();                        //Prima iterazione PIT
-//
-//
-//
-//
-//        if(keyType != ParamType.EXIST) nObjectsInCacheMapBefore++;                  //Prima iterazione PIT
-//        if(keyType != ParamType.EXIST && inSoftMap) nObjectsInCacheMapBefore--;     //Prima iterazione PIT
-//        int nObjectsInCacheMapAfterPut = this.cacheMap.size();                      //Prima iterazione PIT
-//        Assert.assertEquals(nObjectsInCacheMapBefore,nObjectsInCacheMapAfterPut);   //Prima iterazione PIT
-//        Object getRet =  this.cacheMap.get(this.key);
-//        System.out.println(getRet);//TODO: test 7 e 8 non tornano valori giusti
-//        if (maxCacheMap == 0){
-//            Assert.assertNull(this.value);
-//        }
-//        else{
-//            Assert.assertEquals(this.value,getRet);
-//            if(this.keyType == ParamType.EXIST){
-//                Assert.assertEquals(this.value, threadRet);
-//            }
-//        }
-//    }
 
     @After
     public void tearDown() {
